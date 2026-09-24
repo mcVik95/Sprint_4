@@ -2,7 +2,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import pageObjects.MainPage;
+import pageobjects.MainPage;
 import static org.junit.Assert.assertEquals;
 
 
@@ -15,12 +15,12 @@ public class YandexSamokatQuestionPanelTests {
 
 
     @Test
-    public void correctTextFirstQuestionsPanelTest(){
+    public void correctTextQuestionHowPayRent(){
         driver = driverFactory.getDriver();
         MainPage mainPage = new MainPage(driver);
         mainPage.openSite();
         mainPage.scrollMainPageForQuestions();
-        mainPage.clickFirstQuestionPanel();
+        mainPage.clickQuestionHowPayRent();
         assertEquals("Не верный текст вопроса!", "Сколько это стоит? И как оплатить?",
                 driver.findElement(By.xpath("//div[@id='accordion__heading-0']")).getText());
         assertEquals("Не верный текст в инфо поле!", "Сутки — 400 рублей. Оплата курьеру — наличными или картой.",
@@ -28,12 +28,12 @@ public class YandexSamokatQuestionPanelTests {
     }
 
     @Test
-    public void correctTextSecondQuestionsPanelTest(){
+    public void correctTextQuestionTakeManySamokats(){
         driver = driverFactory.getDriver();
         MainPage mainPage = new MainPage(driver);
         mainPage.openSite();
         mainPage.scrollMainPageForQuestions();
-        mainPage.clickSecondQuestionPanel();
+        mainPage.clickQuestionTakeManySamokats();
         assertEquals("Не верный текст вопроса!", "Хочу сразу несколько самокатов! Так можно?",
                 driver.findElement(By.xpath("//div[@id='accordion__heading-1']")).getText());
         assertEquals("Не верный текст в инфо поле!", "Пока что у нас так: один заказ — один самокат. Если хотите покататься с друзьями, можете просто сделать несколько заказов — один за другим.",
@@ -41,12 +41,12 @@ public class YandexSamokatQuestionPanelTests {
     }
 
     @Test
-    public void correctTextThirdQuestionsPanelTest(){
+    public void correctTextQuestionHowRentTime(){
         driver = driverFactory.getDriver();
         MainPage mainPage = new MainPage(driver);
         mainPage.openSite();
         mainPage.scrollMainPageForQuestions();
-        mainPage.clickThirdQuestionPanel();
+        mainPage.clickQuestionHowRentTime();
         assertEquals("Не верный текст вопроса!", "Как рассчитывается время аренды?",
                 driver.findElement(By.xpath("//div[@id='accordion__heading-2']")).getText());
         assertEquals("Не верный текст в инфо поле!", "Допустим, вы оформляете заказ на 8 мая. Мы привозим самокат 8 мая в течение дня. Отсчёт времени аренды начинается с момента, когда вы оплатите заказ курьеру. Если мы привезли самокат 8 мая в 20:30, суточная аренда закончится 9 мая в 20:30.",
@@ -54,12 +54,12 @@ public class YandexSamokatQuestionPanelTests {
     }
 
     @Test
-    public void correctTextFourthQuestionsPanelTest(){
+    public void correctTextQuestionRentTodaySamokat(){
         driver = driverFactory.getDriver();
         MainPage mainPage = new MainPage(driver);
         mainPage.openSite();
         mainPage.scrollMainPageForQuestions();
-        mainPage.clickFourthQuestionPanel();
+        mainPage.clickQuestionRentTodaySamokat();
         assertEquals("Не верный текст вопроса!", "Можно ли заказать самокат прямо на сегодня?",
                 driver.findElement(By.xpath("//div[@id='accordion__heading-3']")).getText());
         assertEquals("Не верный текст в инфо поле!", "Только начиная с завтрашнего дня. Но скоро станем расторопнее.",
@@ -67,12 +67,12 @@ public class YandexSamokatQuestionPanelTests {
     }
 
     @Test
-    public void correctTextFifthQuestionsPanelTest(){
+    public void correctTextQuestionRentReturnSamokatEarlier(){
         driver = driverFactory.getDriver();
         MainPage mainPage = new MainPage(driver);
         mainPage.openSite();
         mainPage.scrollMainPageForQuestions();
-        mainPage.clickFifthQuestionPanel();
+        mainPage.clickQuestionRentReturnSamokatEarlier();
         assertEquals("Не верный текст вопроса!", "Можно ли продлить заказ или вернуть самокат раньше?",
                 driver.findElement(By.xpath("//div[@id='accordion__heading-4']")).getText());
         assertEquals("Не верный текст в инфо поле!", "Пока что нет! Но если что-то срочное — всегда можно позвонить в поддержку по красивому номеру 1010.",
@@ -80,12 +80,12 @@ public class YandexSamokatQuestionPanelTests {
     }
 
     @Test
-    public void correctTextSixthQuestionsPanelTest(){
+    public void correctTextQuestionDeliverCharger(){
         driver = driverFactory.getDriver();
         MainPage mainPage = new MainPage(driver);
         mainPage.openSite();
         mainPage.scrollMainPageForQuestions();
-        mainPage.clickSixthQuestionPanel();
+        mainPage.clickQuestionDeliverCharger();
         assertEquals("Не верный текст вопроса!", "Вы привозите зарядку вместе с самокатом?",
                 driver.findElement(By.xpath("//div[@id='accordion__heading-5']")).getText());
         assertEquals("Не верный текст в инфо поле!", "Самокат приезжает к вам с полной зарядкой. Этого хватает на восемь суток — даже если будете кататься без передышек и во сне. Зарядка не понадобится.",
@@ -93,12 +93,12 @@ public class YandexSamokatQuestionPanelTests {
     }
 
     @Test
-    public void correctTextSeventhQuestionsPanelTest(){
+    public void correctTextQuestionCancelOrder(){
         driver = driverFactory.getDriver();
         MainPage mainPage = new MainPage(driver);
         mainPage.openSite();
         mainPage.scrollMainPageForQuestions();
-        mainPage.clickSeventhQuestionPanel();
+        mainPage.clickQuestionCancelOrder();
         assertEquals("Не верный текст вопроса!", "Можно ли отменить заказ?",
                 driver.findElement(By.xpath("//div[@id='accordion__heading-6']")).getText());
         assertEquals("Не верный текст в инфо поле!", "Да, пока самокат не привезли. Штрафа не будет, объяснительной записки тоже не попросим. Все же свои.",
@@ -106,12 +106,12 @@ public class YandexSamokatQuestionPanelTests {
     }
 
     @Test
-    public void correctTextEighthQuestionsPanelTest(){
+    public void correctTextQuestionMkadDeliver(){
         driver = driverFactory.getDriver();
         MainPage mainPage = new MainPage(driver);
         mainPage.openSite();
         mainPage.scrollMainPageForQuestions();
-        mainPage.clickEighthQuestionPanel();
+        mainPage.clickQuestionMkadDeliver();
         assertEquals("Не верный текст вопроса!", "Я жизу за МКАДом, привезёте?",
                 driver.findElement(By.xpath("//div[@id='accordion__heading-7']")).getText());
         assertEquals("Не верный текст в инфо поле!", "Да, обязательно. Всем самокатов! И Москве, и Московской области.",

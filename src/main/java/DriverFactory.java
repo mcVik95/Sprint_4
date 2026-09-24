@@ -38,8 +38,8 @@ public class DriverFactory extends ExternalResource {
         init();
     }
 
-//    @Override
-//    protected void after() {
-//        driver.quit();
-//    }
+    @Override
+    protected void after() {
+        driver.quit();
+    }
 }

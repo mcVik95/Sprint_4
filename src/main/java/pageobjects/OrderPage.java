@@ -1,9 +1,7 @@
-package pageObjects;
+package pageobjects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class OrderPage {
     private WebDriver driver;
@@ -15,7 +13,8 @@ public class OrderPage {
     private final By userNameInput = By.xpath("//input[@placeholder='* Имя']"); //Заполнение поля имя
     private final By userSurnameInput = By.xpath("//input[@placeholder='* Фамилия']"); //Заполнение поля фамилия
     private final By addressInput = By.xpath("//input[@placeholder='* Адрес: куда привезти заказ']"); //Заполнение поля адреса доставки самоката
-    private final By stationInput = By.className("select-search__input"); //Выбор ближайшей станции метро
+    private final By stationList = By.className("select-search__input"); //Открытие списка станций метро
+    private final By stationInput = By.className("Order_Text__2broi"); //Выбор станции метро
     private final By phoneNumberInput = By.xpath("//input[@placeholder='* Телефон: на него позвонит курьер']"); //Заполнение поля телефон
     private final By nextButtonInOrderPage = By.cssSelector(".Button_Button__ra12g.Button_Middle__1CSJM"); //Нажатие кнопки далее на странице заказа
     private final By openCalendarForTakeDateOrder = By.xpath("//input[@placeholder='* Когда привезти самокат']"); //Открытие календаря, выбора даты доставки самоката
@@ -38,8 +37,8 @@ public class OrderPage {
     }
 
     public void enterStation(){
+        driver.findElement(stationList).click();
         driver.findElement(stationInput).click();
-        driver.findElement(By.className("Order_Text__2broi")).click();
     }
 
     public void enterPhoneNumber(String phoneNumber){
