@@ -1,6 +1,7 @@
 package pageobjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
 public class OrderPage {
@@ -10,69 +11,51 @@ public class OrderPage {
         this.driver = driver;
     }
 
-    private final By userNameInput = By.xpath("//input[@placeholder='* Имя']"); //Заполнение поля имя
-    private final By userSurnameInput = By.xpath("//input[@placeholder='* Фамилия']"); //Заполнение поля фамилия
-    private final By addressInput = By.xpath("//input[@placeholder='* Адрес: куда привезти заказ']"); //Заполнение поля адреса доставки самоката
-    private final By stationList = By.className("select-search__input"); //Открытие списка станций метро
-    private final By stationInput = By.className("Order_Text__2broi"); //Выбор станции метро
-    private final By phoneNumberInput = By.xpath("//input[@placeholder='* Телефон: на него позвонит курьер']"); //Заполнение поля телефон
-    private final By nextButtonInOrderPage = By.cssSelector(".Button_Button__ra12g.Button_Middle__1CSJM"); //Нажатие кнопки далее на странице заказа
-    private final By openCalendarForTakeDateOrder = By.xpath("//input[@placeholder='* Когда привезти самокат']"); //Открытие календаря, выбора даты доставки самоката
-    private final By dateOrderComplite = By.xpath("//div[@aria-label='Choose понедельник, 14-е сентября 2026 г.']"); //Выбор даты, когда нужно доставить самокат
-    private final By commentForCurier = By.xpath("//input[@placeholder='Комментарий для курьера']"); //Комментарий для курьера
-    private final By nextButtonInDetailsPage = By.xpath("//button[@class='Button_Button__ra12g Button_Middle__1CSJM' and text()='Заказать']"); //Нжатие на кнопку заказать
-    private final By compliteButtonInFinalOrderPage = By.xpath("//button[@class='Button_Button__ra12g Button_Middle__1CSJM' and text()='Да']"); //Нажатие на кнопку подтверждения заказа
+    private static final By userNameInput = By.xpath("//input[@placeholder='* Имя']"); //Заполнение поля имя
+    private static final By userSurnameInput = By.xpath("//input[@placeholder='* Фамилия']"); //Заполнение поля фамилия
+    private static final By addressInput = By.xpath("//input[@placeholder='* Адрес: куда привезти заказ']"); //Заполнение поля адреса доставки самоката
+    private static final By stationInput = By.xpath(".//input[@placeholder='* Станция метро']"); //Выбор станции метро
+    private static final By phoneNumberInput = By.xpath("//input[@placeholder='* Телефон: на него позвонит курьер']"); //Заполнение поля телефон
+    private static final By nextButtonInOrderPage = By.cssSelector(".Button_Button__ra12g.Button_Middle__1CSJM"); //Нажатие кнопки далее на странице заказа
+    private static final By orderDateField = By.xpath(".//input[@placeholder='* Когда привезти самокат']"); //Поле когда привезти самокат
+    private static final By openCalendarForTakeDateOrder = By.xpath(".//div[@class='Dropdown-placeholder' and text()='* Срок аренды']/.."); //Открытие списка, выбора срока аренды самоката
+    private static final By commentForCurier = By.xpath("//input[@placeholder='Комментарий для курьера']"); //Комментарий для курьера
+    private static final By nextButtonInDetailsPage = By.xpath("//button[@class='Button_Button__ra12g Button_Middle__1CSJM' and text()='Заказать']"); //Нжатие на кнопку заказать
+    private static final By compliteButtonInFinalOrderPage = By.xpath("//button[@class='Button_Button__ra12g Button_Middle__1CSJM' and text()='Да']"); //Нажатие на кнопку подтверждения заказа
+    private static final By orderModal = By.xpath(".//div[contains(text(), 'Заказ оформлен')]"); //Окно об успешном заказе самоката
 
-
-    public void enterUserName(String userName){
-        driver.findElement(userNameInput).sendKeys(userName);
-    }
-
-    public void enterUserSurname(String userSurname){
-        driver.findElement(userSurnameInput).sendKeys(userSurname);
-    }
-
-    public void enterAddress(String address){
+    public void firstLoginForm(String name, String surname, String address, String metroStation, String phoneNumber) {
+        driver.findElement(userNameInput).sendKeys(name);
+        driver.findElement(userSurnameInput).sendKeys(surname);
         driver.findElement(addressInput).sendKeys(address);
-    }
-
-    public void enterStation(){
-        driver.findElement(stationList).click();
         driver.findElement(stationInput).click();
-    }
-
-    public void enterPhoneNumber(String phoneNumber){
+        driver.findElement(By.xpath(".//div[text()='" + metroStation + "']")).click();
         driver.findElement(phoneNumberInput).sendKeys(phoneNumber);
     }
 
-    public void clickNextButtonInOrderPage(){
+    public void clickNextButton() {
         driver.findElement(nextButtonInOrderPage).click();
     }
 
-    public void takeDateOrderComplite(){
+    public void secondLoginForm(String orderDate, String rentalPeriod, String colour, String comment) {
+        driver.findElement(orderDateField).sendKeys(orderDate);
+        driver.findElement(orderDateField).sendKeys(Keys.ENTER);
         driver.findElement(openCalendarForTakeDateOrder).click();
-        driver.findElement(dateOrderComplite).click();
-    }
-
-    public void takeHowManyDaysRentSamokat(){
-        driver.findElement(By.className("Dropdown-arrow")).click();
-        driver.findElement(By.xpath("//div[text()='сутки']")).click();
-    }
-
-    public void takeColorSamokat(){
-        driver.findElement(By.id("black")).click();
-    }
-
-    public void readCommentForCurier(String comment){
+        driver.findElement(By.xpath(".//div[text()='" + rentalPeriod + "']")).click();
+        driver.findElement(By.xpath(".//label[text()='" + colour + "']")).click();
         driver.findElement(commentForCurier).sendKeys(comment);
     }
 
-    public void clickNextButtonInDetailsPage(){
+    public void clickOrderButton() {
         driver.findElement(nextButtonInDetailsPage).click();
     }
 
-    public void clickCompliteButtonInFinalOrderPage(){
+    public void clickYesButton() {
         driver.findElement(compliteButtonInFinalOrderPage).click();
+    }
+
+    public boolean isOrderModalDisplayed() {
+        return driver.findElement(orderModal).isDisplayed();
     }
 
 }
