@@ -39,7 +39,7 @@ import static org.junit.Assert.assertTrue;
             this.buttonType = buttonType;
         }
 
-        @Parameterized.Parameters
+        @Parameterized.Parameters(name = "Заказ: {0} {1}, адрес={2}, метро={3}, телефон={4}, дата доставки={5}, срок аренды={6}, цвет={7}, комментарий={8}")
         public static Object[][] getCredentials() {
             return new Object[][]{
                     {"Владимир", "Звягин", "Ленина 64", "Черкизовская", "89824366389", "14.09.2026", "сутки", "серая безысходность", "Вези самокат скорее!", "верхняя"},
@@ -51,7 +51,7 @@ import static org.junit.Assert.assertTrue;
         public DriverFactory driverFactory = new DriverFactory();
 
     @Test
-    public void orderSamokat() {
+    public void testOrderSamokat() {
         driver = driverFactory.getDriver();
         MainPage mainPage = new MainPage(driver);
         mainPage.openSite();
